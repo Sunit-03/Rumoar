@@ -1,12 +1,15 @@
 import type { RumoarContent } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
+import { Reveal } from "./Reveal";
 
 export function Competitors({ competitors }: { competitors: RumoarContent["competitors"] }) {
   return (
     <section className="block" id="competitors">
       <div className="wrap">
-        <div className="kicker">{competitors.kicker}</div>
-        <h2 className="section-title">{competitors.title}</h2>
+        <Reveal>
+          <div className="kicker">{competitors.kicker}</div>
+          <h2 className="section-title">{competitors.title}</h2>
+        </Reveal>
         <div className="table-scroll">
           <table className="compare">
             <thead>
@@ -20,8 +23,8 @@ export function Competitors({ competitors }: { competitors: RumoarContent["compe
               </tr>
             </thead>
             <tbody>
-              {competitors.rows.map((row) => (
-                <tr key={row.brand}>
+              {competitors.rows.map((row, i) => (
+                <Reveal as="tr" key={row.brand} delay={Math.min(i * 60, 300)}>
                   <td className="brandname">{row.brand}</td>
                   <td className="figure">
                     <FootnoteText text={row.revenue} />
@@ -32,20 +35,20 @@ export function Competitors({ competitors }: { competitors: RumoarContent["compe
                   <td>
                     <FootnoteText text={row.signal} />
                   </td>
-                </tr>
+                </Reveal>
               ))}
             </tbody>
           </table>
         </div>
 
         <div className="read-list">
-          {competitors.reads.map((read) => (
-            <p key={read.label}>
+          {competitors.reads.map((read, i) => (
+            <Reveal as="p" key={read.label} delay={i * 80}>
               <b className="mono" style={{ color: read.tone === "brass" ? "var(--brass)" : "var(--oxblood)" }}>
                 {read.label}
               </b>{" "}
               <FootnoteText text={read.body} />
-            </p>
+            </Reveal>
           ))}
         </div>
       </div>

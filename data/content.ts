@@ -348,18 +348,68 @@ export const content: RumoarContent = {
   },
 
   sources: [
-    { num: 1, text: "Entrackr / RoC filings — Mokobara FY25: ₹230 Cr revenue, ₹10 Cr loss, ad spend ₹46 Cr, procurement 43% of spend, ~$24 Mn raised." },
-    { num: 2, text: "Expert Market Research — India personal accessories ≈ USD 16.17 Bn (2024), ~9.4% CAGR." },
-    { num: 3, text: "Grand View Research — jewellery ≈ 51.6% share of India fashion accessories (2024)." },
-    { num: 4, text: "India Retailing — organised retail share of bags/belts/wallets ≈ 16%." },
-    { num: 5, text: "Entrackr / D2C Insider — Zouk FY25: ₹125 Cr (+60.7%), ₹19 Cr loss; raising ₹60 Cr at ≈₹610 Cr valuation." },
-    { num: 6, text: "Entrackr / Indian Retailer — Snitch FY25: ₹498 Cr, near breakeven, $53 Mn raised; Souled Store ₹492 Cr; Rare Rabbit +$6 Mn (A91), ₹1,000 Cr target; Wrogn +$9 Mn; Snitch expansion into fragrance & quick commerce." },
-    { num: 7, text: "Public interviews/analyst reports — Snitch AOV ₹1,200 (FY22) → ₹1,850 (FY25); retention-led model." },
-    { num: 8, text: "Times Now / BestMediaInfo, Jan 2025 — Mokobara white-labelling allegations and response." },
-    { num: 9, text: "EximPe / ICEGATE — HS 4202 duty stack: BCD 15%, SWS 10% of duties, IGST 18% on duty-inclusive value." },
-    { num: 10, text: "EximPe — import duty computation methodology, China→India." },
-    { num: 11, text: "Panoramic Sourcing / industry directories — hub specialisations: Kanpur, Kolkata, Chennai/Ambur, Delhi NCR." },
-    { num: 12, text: "IndiaMART verified-exporter listings — leather backpacks ₹900–1,700/pc ex-factory (Kanpur, Kolkata, Unnao)." },
-    { num: 13, text: "Amburshoe industry guide — KH Exports (Chennai), Kanpur/Kolkata export houses." },
+    {
+      num: 1,
+      text: "Entrackr / RoC filings — Mokobara FY25: ₹230 Cr revenue, ₹10 Cr loss, ad spend ₹46 Cr, procurement 43% of spend, ~$24 Mn raised.",
+      url: "https://entrackr.com/fintrackr/mokobara-revenue-doubles-to-rs-230-cr-in-fy25-11066667",
+    },
+    {
+      num: 2,
+      text: "Expert Market Research — India personal accessories ≈ USD 16.17 Bn (2024), ~9.4% CAGR.",
+      url: "https://www.expertmarketresearch.com/reports/india-personal-accessories-market",
+    },
+    {
+      num: 3,
+      text: "Grand View Research — jewellery ≈ 51.6% share of India fashion accessories (2024).",
+      url: "https://www.grandviewresearch.com/horizon/outlook/fashion-accessories-market/india",
+    },
+    {
+      num: 4,
+      text: "India Retailing — organised retail share of bags/belts/wallets ≈ 16%.",
+    },
+    {
+      num: 5,
+      text: "Entrackr / D2C Insider — Zouk FY25: ₹125 Cr (+60.7%), ₹19 Cr loss; raising ₹60 Cr at ≈₹610 Cr valuation.",
+      url: "https://pulse.d2cinsider.com/zouk-set-to-raise-e2-82-b960-crore-at-e2-82-b9610-crore-valuation-as-d2c-fashion-brand-accelerates-growth/",
+    },
+    {
+      num: 6,
+      text: "Entrackr / Indian Retailer — Snitch FY25: ₹498 Cr, near breakeven, $53 Mn raised; Souled Store ₹492 Cr; Rare Rabbit +$6 Mn (A91), ₹1,000 Cr target; Wrogn +$9 Mn; Snitch expansion into fragrance & quick commerce.",
+      url: "https://entrackr.com/fintrackr/snitch-nears-rs-500-cr-revenue-in-fy25-stays-close-to-breakeven-11058503",
+    },
+    {
+      num: 7,
+      text: "Public interviews/analyst reports — Snitch AOV ₹1,200 (FY22) → ₹1,850 (FY25); retention-led model.",
+    },
+    {
+      num: 8,
+      text: "Times Now / BestMediaInfo, Jan 2025 — Mokobara white-labelling allegations and response.",
+      url: "https://bestmediainfo.com/mediainfo/mediainfo-marketing/mokobara-responds-to-backlash-over-alleged-white-labelling-claims-8639453",
+    },
+    {
+      num: 9,
+      text: "EximPe / ICEGATE — HS 4202 duty stack: BCD 15%, SWS 10% of duties, IGST 18% on duty-inclusive value.",
+      url: "https://eximpe.com/hsn/handbag-hsn-code",
+    },
+    {
+      num: 10,
+      text: "EximPe — import duty computation methodology, China→India.",
+      url: "https://eximpe.com/blog/b2b/import-duty-from-china-to-india",
+    },
+    {
+      num: 11,
+      text: "Panoramic Sourcing / industry directories — hub specialisations: Kanpur, Kolkata, Chennai/Ambur, Delhi NCR.",
+      url: "https://panoramicsourcing.com/leather-bag-manufacturer-in-india/",
+    },
+    {
+      num: 12,
+      text: "IndiaMART verified-exporter listings — leather backpacks ₹900–1,700/pc ex-factory (Kanpur, Kolkata, Unnao).",
+      url: "https://dir.indiamart.com/impcat/leather-backpacks.html?biz=10",
+    },
+    {
+      num: 13,
+      text: "Amburshoe industry guide — KH Exports (Chennai), Kanpur/Kolkata export houses.",
+      url: "https://amburshoe.com/top-leading-leather-bag-manufacturers-in-india-guide/",
+    },
   ],
 };

@@ -103,6 +103,7 @@ export interface Principle {
 export interface Source {
   num: number;
   text: string;
+  url?: string;
 }
 
 export interface RumoarContent {

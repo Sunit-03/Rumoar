@@ -1,4 +1,5 @@
 import type { RumoarContent } from "@/data/types";
+import { Reveal } from "./Reveal";
 
 export function Footer({
   footer,
@@ -10,18 +11,29 @@ export function Footer({
   return (
     <footer id="sources">
       <div className="wrap">
-        <p className="footer-line">{footer.line}</p>
+        <Reveal as="p" className="footer-line">
+          {footer.line}
+        </Reveal>
 
-        <div className="sources">
+        <Reveal className="sources">
           <ol>
             {sources.map((s) => (
               <li key={s.num} id={`src${s.num}`}>
                 <span className="num">[{s.num}]</span>
                 {s.text}
+                {s.url && (
+                  <>
+                    {" "}
+                    —{" "}
+                    <a href={s.url} target="_blank" rel="noopener noreferrer">
+                      source ↗
+                    </a>
+                  </>
+                )}
               </li>
             ))}
           </ol>
-        </div>
+        </Reveal>
 
         <p className="disclaimer">{footer.disclaimer}</p>
       </div>

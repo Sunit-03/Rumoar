@@ -1,19 +1,22 @@
 import type { RumoarContent } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
+import { Reveal } from "./Reveal";
 
 export function Risks({ risks }: { risks: RumoarContent["risks"] }) {
   return (
     <section className="block risks" id="risks">
       <div className="wrap">
-        <div className="kicker" style={{ color: "var(--oxblood)" }}>
-          {risks.kicker}
-        </div>
-        <h2 className="section-title oxblood">{risks.title}</h2>
-        <p className="lede">{risks.lede}</p>
+        <Reveal>
+          <div className="kicker" style={{ color: "var(--oxblood)" }}>
+            {risks.kicker}
+          </div>
+          <h2 className="section-title oxblood">{risks.title}</h2>
+          <p className="lede">{risks.lede}</p>
+        </Reveal>
 
         <div className="risk-list">
-          {risks.blocks.map((block) => (
-            <div className="risk-block" key={block.num}>
+          {risks.blocks.map((block, i) => (
+            <Reveal className="risk-block" key={block.num} delay={i * 80}>
               <span className="risk-num">{block.num}</span>
               <div className="risk-body">
                 <b className="risk-title">{block.title}</b>
@@ -22,7 +25,7 @@ export function Risks({ risks }: { risks: RumoarContent["risks"] }) {
                 </p>
                 <div className="must-be-true">{block.mustBeTrue}</div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

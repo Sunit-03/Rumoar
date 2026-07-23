@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import type { RumoarContent, SliderConfig } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
+import { Reveal } from "./Reveal";
+import { useAnimatedNumber } from "@/lib/use-animated-number";
 
 function formatValue(value: number, format: SliderConfig["format"]): string {
   if (format === "percent") return `${value}%`;
@@ -44,16 +46,22 @@ export function Economics({ economics }: { economics: RumoarContent["economics"]
 
   const isViable = results.firstYear >= 0;
 
+  const animatedContrib = useAnimatedNumber(results.contribPerOrder);
+  const animatedFirstYear = useAnimatedNumber(results.firstYear);
+  const animatedPayback = useAnimatedNumber(isFinite(results.payback) ? results.payback : 0);
+
   return (
     <section className="block" id="economics">
       <div className="wrap">
-        <div className="kicker">{economics.kicker}</div>
-        <h2 className="section-title">{economics.title}</h2>
-        <p className="lede">
-          <FootnoteText text={economics.lede} />
-        </p>
+        <Reveal>
+          <div className="kicker">{economics.kicker}</div>
+          <h2 className="section-title">{economics.title}</h2>
+          <p className="lede">
+            <FootnoteText text={economics.lede} />
+          </p>
+        </Reveal>
 
-        <div className="calc-card">
+        <Reveal className="calc-card">
           <div className="calc-inputs">
             {sliders.map((slider) => (
               <div className="slider-group" key={slider.key}>
@@ -80,16 +88,16 @@ export function Economics({ economics }: { economics: RumoarContent["economics"]
               <span className="olabel">
                 Contribution per order (fulfilment fixed at {fulfilmentPct}% of AOV — shipping, payment, returns)
               </span>
-              <span className="oval mono">{formatInr(results.contribPerOrder)} / order</span>
+              <span className="oval mono">{formatInr(animatedContrib)} / order</span>
             </div>
             <div className="output-row">
               <span className="olabel">First-year contribution per customer</span>
-              <span className="oval mono">{formatInr(results.firstYear)}</span>
+              <span className="oval mono">{formatInr(animatedFirstYear)}</span>
             </div>
             <div className="output-row">
               <span className="olabel">Payback period</span>
               <span className="oval mono">
-                {isFinite(results.payback) ? `${results.payback.toFixed(1)} orders` : "never"}
+                {isFinite(results.payback) ? `${animatedPayback.toFixed(1)} orders` : "never"}
               </span>
             </div>
             <div className={`verdict-line mono ${isViable ? "pos" : "neg"}`}>
@@ -98,7 +106,7 @@ export function Economics({ economics }: { economics: RumoarContent["economics"]
                 : "At these numbers, RUMOAR loses money on every customer it acquires. This is the default state of this category."}
             </div>
           </div>
-        </div>
+        </Reveal>
 
         <p className="calc-note">{economics.note}</p>
       </div>

@@ -1,24 +1,27 @@
 import type { RumoarContent } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
+import { FunnelBar } from "./FunnelBar";
+import { Reveal } from "./Reveal";
 
 export function Market({ market }: { market: RumoarContent["market"] }) {
   return (
     <section className="block" id="market">
       <div className="wrap">
-        <div className="kicker">{market.kicker}</div>
-        <h2 className="section-title">{market.title}</h2>
-        <p className="lede">{market.lede}</p>
+        <Reveal>
+          <div className="kicker">{market.kicker}</div>
+          <h2 className="section-title">{market.title}</h2>
+          <p className="lede">{market.lede}</p>
+        </Reveal>
 
         <div className="funnel">
-          {market.funnel.map((step) => (
-            <div className="funnel-row" key={step.label}>
-              <div className="funnel-label mono">{step.label}</div>
-              <div className="funnel-bar-wrap">
-                <div className="funnel-bar" style={{ width: `${step.widthPct}%` }}>
-                  {step.value}
-                </div>
-              </div>
-            </div>
+          {market.funnel.map((step, i) => (
+            <FunnelBar
+              key={step.label}
+              label={step.label}
+              value={step.value}
+              widthPct={step.widthPct}
+              delay={i * 150}
+            />
           ))}
         </div>
         <span className="assumption-tag">{market.funnelAssumption}</span>
@@ -28,25 +31,25 @@ export function Market({ market }: { market: RumoarContent["market"] }) {
         </p>
 
         <div className="bottom-up-grid">
-          {market.bottomUp.slice(0, 2).map((stat) => (
-            <div className="stat-card" key={stat.big}>
+          {market.bottomUp.slice(0, 2).map((stat, i) => (
+            <Reveal className="stat-card" key={stat.big} delay={i * 90}>
               <span className="big mono">{stat.big}</span>
               {stat.body}
               {stat.assumption && <span className="assumption-tag">{stat.assumption}</span>}
-            </div>
+            </Reveal>
           ))}
         </div>
         {market.bottomUp.slice(2).map((stat) => (
-          <div className="stat-card" style={{ marginBottom: 36 }} key={stat.big}>
+          <Reveal className="stat-card standalone" key={stat.big} delay={180}>
             <span className="big mono">{stat.big}</span>
             {stat.body}
             {stat.assumption && <span className="assumption-tag">{stat.assumption}</span>}
-          </div>
+          </Reveal>
         ))}
 
-        <div className="callout">
+        <Reveal className="callout">
           <b>Reconciliation:</b> <FootnoteText text={market.reconciliation} />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
