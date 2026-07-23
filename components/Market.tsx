@@ -51,7 +51,11 @@ export function Market({ market }: { market: RumoarContent["market"] }) {
           {market.incumbents.replace(/^The incumbent layer:\s*/, "")}
         </Reveal>
 
-        <Reveal as="p" className="scope-note mono">
+        <Reveal
+          as="p"
+          className="scope-note mono"
+          style={{ marginTop: "clamp(2rem, 5vw, 5rem)" }}
+        >
           {market.scopeNote}
         </Reveal>
       </div>

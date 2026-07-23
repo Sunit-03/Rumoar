@@ -1,6 +1,6 @@
 "use client";
 
-import { createElement, type ReactNode } from "react";
+import { createElement, type CSSProperties, type ReactNode } from "react";
 import { useInView } from "@/lib/use-in-view";
 
 type Tag = "div" | "li" | "tr" | "p" | "article";
@@ -10,11 +10,13 @@ export function Reveal({
   className = "",
   as = "div",
   delay = 0,
+  style,
 }: {
   children: ReactNode;
   className?: string;
   as?: Tag;
   delay?: number;
+  style?: CSSProperties;
 }) {
   const { ref, inView } = useInView();
 
@@ -23,7 +25,7 @@ export function Reveal({
     {
       ref,
       className: `reveal${inView ? " in-view" : ""}${className ? ` ${className}` : ""}`,
-      style: delay ? { transitionDelay: `${delay}ms` } : undefined,
+      style: delay ? { ...style, transitionDelay: `${delay}ms` } : style,
     },
     children
   );
