@@ -24,31 +24,35 @@ export function Market({ market }: { market: RumoarContent["market"] }) {
             />
           ))}
         </div>
-        <span className="assumption-tag">{market.funnelAssumption}</span>
+        <span className="assumption-tag">{market.funnelNote}</span>
 
-        <p className="lede" style={{ marginTop: 36 }}>
-          {market.reconciliationIntro}
-        </p>
-
-        <div className="bottom-up-grid">
-          {market.bottomUp.slice(0, 2).map((stat, i) => (
+        <div className="bottom-up-grid three" style={{ marginTop: 36 }}>
+          {market.stats.map((stat, i) => (
             <Reveal className="stat-card" key={stat.big} delay={i * 90}>
               <span className="big mono">{stat.big}</span>
-              {stat.body}
+              <FootnoteText text={stat.body} />
               {stat.assumption && <span className="assumption-tag">{stat.assumption}</span>}
             </Reveal>
           ))}
         </div>
-        {market.bottomUp.slice(2).map((stat) => (
-          <Reveal className="stat-card standalone" key={stat.big} delay={180}>
-            <span className="big mono">{stat.big}</span>
-            {stat.body}
-            {stat.assumption && <span className="assumption-tag">{stat.assumption}</span>}
-          </Reveal>
-        ))}
+
+        <Reveal>
+          <ul className="bullet-list">
+            {market.bullets.map((b) => (
+              <li key={b}>
+                <FootnoteText text={b} />
+              </li>
+            ))}
+          </ul>
+        </Reveal>
 
         <Reveal className="callout">
-          <b>Reconciliation:</b> <FootnoteText text={market.reconciliation} />
+          <b>The incumbent layer:</b>{" "}
+          {market.incumbents.replace(/^The incumbent layer:\s*/, "")}
+        </Reveal>
+
+        <Reveal as="p" className="scope-note mono">
+          {market.scopeNote}
         </Reveal>
       </div>
     </section>

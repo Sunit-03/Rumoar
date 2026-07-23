@@ -1,6 +1,7 @@
 "use client";
 
 import { useInView } from "@/lib/use-in-view";
+import { FootnoteText } from "./FootnoteText";
 
 export function FunnelBar({
   label,
@@ -27,7 +28,7 @@ export function FunnelBar({
           }}
         >
           <span className="funnel-bar-value" style={{ opacity: inView ? 1 : 0, transitionDelay: `${delay + 500}ms` }}>
-            {value}
+            <FootnoteText text={value} />
           </span>
         </div>
       </div>

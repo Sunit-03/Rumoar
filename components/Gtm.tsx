@@ -1,6 +1,7 @@
 import type { RumoarContent } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
 import { Reveal } from "./Reveal";
+import { TodoBlock } from "./TodoBlock";
 
 export function Gtm({ gtm }: { gtm: RumoarContent["gtm"] }) {
   return (
@@ -9,10 +10,9 @@ export function Gtm({ gtm }: { gtm: RumoarContent["gtm"] }) {
         <Reveal>
           <div className="kicker">{gtm.kicker}</div>
           <h2 className="section-title">{gtm.title}</h2>
-          <p className="positioning">{gtm.positioning}</p>
         </Reveal>
 
-        <div className="gtm-grid">
+        <div className="gtm-grid two">
           {gtm.cards.map((card, i) => (
             <Reveal className="gtm-card" key={card.title} delay={i * 90}>
               <h4>{card.title}</h4>
@@ -22,9 +22,8 @@ export function Gtm({ gtm }: { gtm: RumoarContent["gtm"] }) {
             </Reveal>
           ))}
         </div>
-        <Reveal as="p" className="ai-note">
-          <FootnoteText text={gtm.aiNote} />
-        </Reveal>
+
+        <TodoBlock text={gtm.todo} />
       </div>
     </section>
   );

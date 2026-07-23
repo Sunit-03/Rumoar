@@ -1,6 +1,7 @@
 import type { RumoarContent } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
 import { Reveal } from "./Reveal";
+import { TodoBlock } from "./TodoBlock";
 
 export function Sourcing({ sourcing }: { sourcing: RumoarContent["sourcing"] }) {
   return (
@@ -10,6 +11,17 @@ export function Sourcing({ sourcing }: { sourcing: RumoarContent["sourcing"] }) 
           <div className="kicker">{sourcing.kicker}</div>
           <h2 className="section-title">{sourcing.title}</h2>
         </Reveal>
+
+        <div className="argument-grid">
+          {sourcing.argumentCards.map((card, i) => (
+            <Reveal className="argument-card" key={card.title} delay={i * 120}>
+              <h4>{card.title}</h4>
+              <p>
+                <FootnoteText text={card.body} />
+              </p>
+            </Reveal>
+          ))}
+        </div>
 
         <div className="duty-grid">
           {sourcing.dutyCards.map((card, i) => (
@@ -43,9 +55,7 @@ export function Sourcing({ sourcing }: { sourcing: RumoarContent["sourcing"] }) 
           ))}
         </div>
 
-        <Reveal className="callout">
-          <b>When the math flips:</b> <FootnoteText text={sourcing.flipCallout} />
-        </Reveal>
+        <TodoBlock text={sourcing.todo} />
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import type { RumoarContent } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
 import { Reveal } from "./Reveal";
+import { TodoBlock } from "./TodoBlock";
 
 export function Risks({ risks }: { risks: RumoarContent["risks"] }) {
   return (
@@ -28,6 +29,8 @@ export function Risks({ risks }: { risks: RumoarContent["risks"] }) {
             </Reveal>
           ))}
         </div>
+
+        <TodoBlock text={risks.todo} />
       </div>
     </section>
   );

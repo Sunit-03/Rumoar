@@ -1,6 +1,7 @@
 import type { RumoarContent } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
 import { Reveal } from "./Reveal";
+import { TodoBlock } from "./TodoBlock";
 
 export function Competitors({ competitors }: { competitors: RumoarContent["competitors"] }) {
   return (
@@ -14,26 +15,21 @@ export function Competitors({ competitors }: { competitors: RumoarContent["compe
           <table className="compare">
             <thead>
               <tr>
-                <th>Brand</th>
-                <th>FY25 revenue</th>
-                <th>YoY</th>
-                <th>P&amp;L</th>
-                <th>Raised</th>
-                <th>Signal</th>
+                {competitors.columns.map((col) => (
+                  <th key={col}>{col}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {competitors.rows.map((row, i) => (
                 <Reveal as="tr" key={row.brand} delay={Math.min(i * 60, 300)}>
                   <td className="brandname">{row.brand}</td>
-                  <td className="figure">
-                    <FootnoteText text={row.revenue} />
+                  <td className="figure wrap-cell">
+                    <FootnoteText text={row.numbers} />
                   </td>
-                  <td className="figure">{row.yoy}</td>
-                  <td>{row.pnl}</td>
-                  <td className="mono-cell">{row.raised}</td>
                   <td>
-                    <FootnoteText text={row.signal} />
+                    {row.read && <FootnoteText text={row.read} />}
+                    {row.todo && <TodoBlock text={row.todo} compact />}
                   </td>
                 </Reveal>
               ))}
@@ -41,16 +37,9 @@ export function Competitors({ competitors }: { competitors: RumoarContent["compe
           </table>
         </div>
 
-        <div className="read-list">
-          {competitors.reads.map((read, i) => (
-            <Reveal as="p" key={read.label} delay={i * 80}>
-              <b className="mono" style={{ color: read.tone === "brass" ? "var(--brass)" : "var(--oxblood)" }}>
-                {read.label}
-              </b>{" "}
-              <FootnoteText text={read.body} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal className="callout">
+          <b>{competitors.closingLabel}</b> <FootnoteText text={competitors.closing} />
+        </Reveal>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import type { RumoarContent } from "@/data/types";
 import { Reveal } from "./Reveal";
+import { TodoBlock } from "./TodoBlock";
 
 export function Footer({
   footer,
@@ -34,6 +35,8 @@ export function Footer({
             ))}
           </ol>
         </Reveal>
+
+        {footer.todo && <TodoBlock text={footer.todo} />}
 
         <p className="disclaimer">{footer.disclaimer}</p>
       </div>

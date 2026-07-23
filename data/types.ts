@@ -17,10 +17,9 @@ export interface FunnelStep {
   label: string;
   value: string;
   widthPct: number;
-  assumption?: string;
 }
 
-export interface BottomUpStat {
+export interface StatCard {
   big: string;
   body: string; // may contain [n] footnote markers
   assumption?: string;
@@ -28,17 +27,9 @@ export interface BottomUpStat {
 
 export interface CompetitorRow {
   brand: string;
-  revenue: string;
-  yoy: string;
-  pnl: string;
-  raised: string;
-  signal: string; // may contain [n] footnote markers
-}
-
-export interface ReadItem {
-  label: string;
-  tone: "brass" | "oxblood";
-  body: string; // may contain [n] footnote markers
+  numbers: string; // may contain [n] footnote markers
+  read?: string; // may contain [n] footnote markers
+  todo?: string; // renders as a visible TODO block in place of the read
 }
 
 export interface DutySegment {
@@ -55,6 +46,11 @@ export interface DutyCard {
 
 export interface HubCard {
   name: string;
+  body: string; // may contain [n] footnote markers
+}
+
+export interface ArgumentCard {
+  title: string;
   body: string; // may contain [n] footnote markers
 }
 
@@ -75,12 +71,15 @@ export interface CalculatorConfig {
   fulfilmentPct: number; // fixed % of AOV
 }
 
-export type MoatTag = "MOAT" | "NOT A MOAT" | "NOT A MOAT (YET)" | "THE ONLY BUILDABLE MOAT";
-
-export interface MoatCard {
-  tag: MoatTag;
+export interface FlywheelStep {
+  num: number;
   title: string;
-  body: string; // may contain [n] footnote markers
+  body: string;
+}
+
+export interface TimelineStep {
+  label: string;
+  body: string;
 }
 
 export interface RiskBlock {
@@ -95,9 +94,9 @@ export interface GtmCard {
   body: string; // may contain [n] footnote markers
 }
 
-export interface Principle {
-  num: number;
-  body: string; // may contain [n] footnote markers
+export interface GlobalRead {
+  title: string;
+  body: string;
 }
 
 export interface Source {
@@ -132,23 +131,35 @@ export interface RumoarContent {
     title: string;
     lede: string;
     funnel: FunnelStep[];
-    funnelAssumption: string;
-    reconciliationIntro: string;
-    bottomUp: BottomUpStat[];
-    reconciliation: string; // may contain [n] footnote markers
+    funnelNote: string;
+    stats: StatCard[];
+    bullets: string[]; // may contain [n] footnote markers
+    incumbents: string;
+    scopeNote: string;
   };
   competitors: {
     kicker: string;
     title: string;
+    columns: [string, string, string];
     rows: CompetitorRow[];
-    reads: ReadItem[];
+    closingLabel: string;
+    closing: string;
+  };
+  global: {
+    kicker: string;
+    title: string;
+    stats: StatCard[];
+    bullets: string[];
+    readsLabel: string;
+    reads: GlobalRead[];
   };
   sourcing: {
     kicker: string;
     title: string;
+    argumentCards: ArgumentCard[];
     dutyCards: DutyCard[];
     hubs: HubCard[];
-    flipCallout: string;
+    todo: string;
   };
   economics: {
     kicker: string;
@@ -160,29 +171,33 @@ export interface RumoarContent {
   moat: {
     kicker: string;
     title: string;
-    cards: MoatCard[];
+    opening: string;
+    flywheelHeading: string;
+    flywheel: FlywheelStep[];
+    flywheelLoop: string;
+    timelineHeading: string;
+    timelineIntro: string;
+    timeline: TimelineStep[];
+    whyCards: ArgumentCard[];
+    discountCallout: string;
   };
   risks: {
     kicker: string;
     title: string;
     lede: string;
     blocks: RiskBlock[];
+    todo: string;
   };
   gtm: {
     kicker: string;
     title: string;
-    positioning: string;
     cards: GtmCard[];
-    aiNote: string;
-  };
-  product: {
-    kicker: string;
-    title: string;
-    principles: Principle[];
+    todo: string;
   };
   footer: {
     line: string;
     disclaimer: string;
+    todo?: string;
   };
   sources: Source[];
 }

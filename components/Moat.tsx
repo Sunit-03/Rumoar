@@ -1,10 +1,6 @@
-import type { MoatTag, RumoarContent } from "@/data/types";
+import type { RumoarContent } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
 import { Reveal } from "./Reveal";
-
-function tagClass(tag: MoatTag): string {
-  return tag === "THE ONLY BUILDABLE MOAT" ? "yes" : "no";
-}
 
 export function Moat({ moat }: { moat: RumoarContent["moat"] }) {
   return (
@@ -14,17 +10,55 @@ export function Moat({ moat }: { moat: RumoarContent["moat"] }) {
           <div className="kicker">{moat.kicker}</div>
           <h2 className="section-title">{moat.title}</h2>
         </Reveal>
-        <div className="moat-grid">
-          {moat.cards.map((card, i) => (
-            <Reveal className="moat-card" key={card.title} delay={i * 90}>
-              <span className={`moat-tag ${tagClass(card.tag)} mono`}>{card.tag}</span>
-              <h4>{card.title}</h4>
-              <p>
-                <FootnoteText text={card.body} />
-              </p>
+
+        <Reveal className="tldr-card">
+          <p>
+            <FootnoteText text={moat.opening} />
+          </p>
+        </Reveal>
+
+        <Reveal>
+          <h3 className="sub-heading mono">{moat.flywheelHeading}</h3>
+        </Reveal>
+        <div className="flywheel">
+          {moat.flywheel.map((step, i) => (
+            <Reveal className="fly-step" key={step.title} delay={i * 120}>
+              <span className="fly-num mono">0{step.num}</span>
+              <h4>{step.title}</h4>
+              <p>{step.body}</p>
             </Reveal>
           ))}
         </div>
+        <Reveal as="p" className="fly-loop mono">
+          {moat.flywheelLoop}
+        </Reveal>
+
+        <Reveal>
+          <h3 className="sub-heading mono">{moat.timelineHeading}</h3>
+          <p className="lede">{moat.timelineIntro}</p>
+        </Reveal>
+
+        <div className="timeline">
+          {moat.timeline.map((step, i) => (
+            <Reveal className="tl-step" key={step.label} delay={i * 140}>
+              <span className="tl-label mono">{step.label}</span>
+              <p>{step.body}</p>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="why-grid">
+          {moat.whyCards.map((card, i) => (
+            <Reveal className="why-card" key={card.title} delay={i * 100}>
+              <b>{card.title}</b>
+              <p>{card.body}</p>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="callout">
+          <b>The discount rule:</b> {moat.discountCallout}
+        </Reveal>
       </div>
     </section>
   );
