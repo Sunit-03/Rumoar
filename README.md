@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RUMOAR — Should It Exist?
 
-## Getting Started
+A one-page strategy microsite arguing whether the RUMOAR accessories brand should exist — market sizing, competitor read, sourcing economics, a unit-economics calculator, the moat thesis, and the honest risks, all backed by inline footnoted sources.
 
-First, run the development server:
+Built with Next.js (App Router) and TypeScript. No CMS, no database — the entire page is one typed content object rendered by section components.
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Editing the content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All page copy lives in one place: [data/content.ts](data/content.ts), typed against [data/types.ts](data/types.ts). There's no content scattered across components — to change any number, claim, or section heading, edit that file. `lib/get-content.ts` is the single seam between the page and its data source, so swapping in a CMS later only means changing that one function.
 
-## Learn More
+Each top-level key in `content` (e.g. `hero`, `market`, `sourcing`, `moat`, `gtm`) maps to one section component in `app/page.tsx`.
 
-To learn more about Next.js, take a look at the following resources:
+## Screenshot evidence
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Sections that cite Reddit/forum evidence (Moat's "Why Now", GTM's "What People Are Actually Saying") reference image files by path under `public/screenshots/`. Drop the actual screenshot files there using the filenames referenced in each `EvidenceScreenshot`'s `src` field in `data/content.ts` — until a file exists at that path, the slot falls back to a labeled placeholder box.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `components/EvidenceShot.tsx` — static grid layout (used in Moat)
+- `components/EvidenceDeck.tsx` — auto-cycling card stack (used in GTM)
 
-## Deploy on Vercel
+## Project structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+app/            Root layout, global styles, the single page route
+components/     One component per page section, plus shared pieces
+                (Reveal, FootnoteText, EvidenceShot/Deck, TodoBlock)
+data/           content.ts (all copy) + types.ts (its shape)
+lib/            get-content.ts, use-in-view.ts (scroll-reveal hook)
+public/         Static assets, including public/screenshots/
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Notable pieces
+
+- **`Reveal`** — wraps a section's contents so it fades/slides in on scroll into view and fades back out when scrolled away (both directions).
+- **`FootnoteText`** — renders `[n]` markers embedded in copy as linked superscripts pointing at the Sources section.
+- **`TodoBlock`** — renders a visible "TODO — SUNIT" callout for content gaps still to be filled in (see `components/Risks.tsx`, `components/Competitors.tsx`, `components/Footer.tsx` for current usages).
+
+## Build
+
+```bash
+npm run build
+npm run start
+```
+
+## Deploy
+
+Deployable anywhere Next.js runs (e.g. [Vercel](https://vercel.com/new)). No environment variables or external services are required — it's a fully static content page.
