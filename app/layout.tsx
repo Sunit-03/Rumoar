@@ -36,7 +36,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${archivoBlack.variable} ${publicSans.variable} ${plexMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
+          <filter id="img-sharpen">
+            <feConvolveMatrix order="3" kernelMatrix="0 -1 0 -1 5 -1 0 -1 0" preserveAlpha="true" />
+          </filter>
+        </svg>
+        {children}
+      </body>
     </html>
   );
 }

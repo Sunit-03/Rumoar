@@ -1,4 +1,5 @@
 import type { RumoarContent } from "@/data/types";
+import { EvidenceShot } from "./EvidenceShot";
 import { FootnoteText } from "./FootnoteText";
 import { Reveal } from "./Reveal";
 
@@ -15,6 +16,23 @@ export function Moat({ moat }: { moat: RumoarContent["moat"] }) {
           <p>
             <FootnoteText text={moat.opening} />
           </p>
+        </Reveal>
+
+        <Reveal>
+          <h3 className="sub-heading mono">{moat.whyNowHeading}</h3>
+          <p className="lede">
+            <FootnoteText text={moat.whyNowBody} />
+          </p>
+        </Reveal>
+
+        <div className="evidence-grid">
+          {moat.whyNowScreenshots.map((shot, i) => (
+            <EvidenceShot shot={shot} delay={i * 100} key={shot.label} />
+          ))}
+        </div>
+
+        <Reveal as="p" className="lede">
+          <FootnoteText text={moat.whyNowClosing} />
         </Reveal>
 
         <Reveal>

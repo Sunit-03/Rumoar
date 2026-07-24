@@ -24,6 +24,8 @@ export const content: RumoarContent = {
     headline: "Should Rumoar Exist?",
     subhead:
       "I went through the market reports, the competitor filings, and the sourcing math myself. This page is my answer — with the numbers I found, the calls I'd make, and the reasons this could still fail.",
+    positioning:
+      "For the man who's tired of looking like every other guy on his feed, RUMOAR is the one place that lets his gear say which tribe he actually belongs to.",
     verdictChipBold: "MY CALL: YES — IF THE FLYWHEEL WORKS.",
     verdictChipRest: "Explained below.",
   },
@@ -220,9 +222,58 @@ export const content: RumoarContent = {
         name: "Delhi NCR",
         body: "Flexible private-label runs for fashion brands; the right fit for RUMOAR's first drops [16].",
       },
+      {
+        name: "Jalandhar, Punjab",
+        body: "An established sports-goods manufacturing hub specific to caps/headwear — e.g. Sambhav Cap Creations, operating since 2013, exports to UK/Australia/Middle East.",
+      },
     ],
-    todo:
-      "Still my single biggest gap: I have per-piece ex-factory prices from IndiaMART [18] but no published MOQs anywhere. Call/WhatsApp 2–3 sellers (Kanpur + Delhi NCR) and one Chennai/Ambur exporter — ask MOQ per style/colour, unit price at MOQ, sample cost, lead time. Even two real quotes (\"Kanpur vendor X: 200 pcs MOQ, ₹1,150/pc, 21 days\") instantly outclasses every AI-sourced number on this page. 30–60 minutes of calls.",
+    realListings: {
+      heading: "What real listings show (public benchmarks, not firsthand quotes)",
+      intro:
+        "I dug past the first page of results for actual manufacturer pages, not just aggregator estimates. Here's what's publicly disclosed, by category:",
+      columns: [
+        {
+          category: "Bags",
+          listings: [
+            {
+              name: "Zakara International (Kanpur)",
+              body: "MOQ starts at 50 pieces. Real operating history — 10+ years, exports to USA/Canada/Europe, 3,000–3,500 bags/month capacity.",
+            },
+            {
+              name: "Ambur Leather (Ambur, TN)",
+              body: "MOQ 100 units, flexible; 15–30 day production.",
+              lowConfidence: "Page has some templated-marketing markers; treat as advertised, not independently verified.",
+            },
+          ],
+        },
+        {
+          category: "Caps",
+          listings: [
+            {
+              name: "Annaya Creations (Karol Bagh, Delhi)",
+              body: "MOQ 100 pieces. Printing, embroidery and GST charged separately. 4–12 day production. This is the single most concrete public price point found in this research.",
+              highlight: "Disclosed unit pricing: ₹30–₹65 per blank cap depending on style.",
+            },
+          ],
+        },
+        {
+          category: "Wallets",
+          listings: [
+            {
+              name: "MB Exports International (Kanpur)",
+              body: "MOQ 100 pieces/style. Founded 1992, SMETA-certified (audited by Bureau Veritas, SGS, UL), 200+ artisans, 20,000–30,000 wallets/month capacity, exports to USA/UK/Germany/France/Canada. 7–10 day samples, 30–45 day production lead time.",
+            },
+            {
+              name: "Broader Kanpur-area marketplace spread",
+              body: "₹190–₹425 per piece, MOQ 100–1,000 depending on seller — useful only to show the range the market clears at.",
+              lowConfidence: "Many small unverified listings.",
+            },
+          ],
+        },
+      ],
+      read:
+        "MOQs across all three categories cluster around 50–100 pieces, not the 300–1,000+ I originally assumed. That's a stronger, more specific case for India-first sourcing than the general duty-math argument alone — real small-batch drops are achievable without China-scale volume commitments. Caps also come out as the cheapest, fastest category to launch first (₹30–65 base cost, 4–12 day production) — worth weighing against bags as the higher-identity-impact but slower-turnaround opening product.",
+    },
   },
 
   economics: {
@@ -246,6 +297,25 @@ export const content: RumoarContent = {
     title: "The Moat: A FOMO Flywheel, Not an Ad Budget",
     opening:
       "My first instinct was to say marketing and design are the moat. I tested that against one question: if Mokobara or Snitch decided tomorrow to outspend me on ads and hire my exact influencers, what stops them? Nothing — they have more money, and design gets copied within one production cycle — Mokobara's own Jan 2025 white-labelling controversy is the proof [4]. Ad spend isn't a moat, it's rent. What survives that test is the thing money can't directly buy: a following that spreads the brand itself.",
+    whyNowHeading: "Why now",
+    whyNowBody:
+      "The brands spending the most on identity and sustainability messaging are often the ones failing customers on the basics — delivery, refunds, honest pricing. That gap between brand story and brand execution is where RUMOAR has room to actually earn trust, not just claim it.",
+    whyNowScreenshots: [
+      {
+        label: "r/AskIndia — Zouk delivery/refund thread",
+        src: "/screenshots/zouk-refund-complaint.png",
+        caption:
+          'r/AskIndia, 2 years ago — a Zouk customer\'s account of broken delivery, a refund policy that only offers gift cards, and messaging around "artisans and sustainability" that didn\'t match the experience.',
+      },
+      {
+        label: "r/indianstartups — \"same brand\" thread",
+        src: "/screenshots/same-brand-mokobara-assembly-urban-jungle.png",
+        caption:
+          'r/indianstartups, 1 year ago — a customer calling out Mokobara, Assembly, and Urban Jungle as visually identical: "if the brand were a person, they\'d be the exact same person."',
+      },
+    ],
+    whyNowClosing:
+      "Concretely: a transparent refund policy (cash, not just gift cards), real customer support, and no fake discounting — tying back to the rule already on this page: never discount the hyped drop, only the first-order acquisition offer.",
     flywheelHeading: "The flywheel",
     flywheel: [
       {
@@ -354,8 +424,57 @@ export const content: RumoarContent = {
         body: "No celebrity faces. My criteria: non-controversial, decent reach, affordable. Real example of the profile I mean: Sarang Patil — ~45K followers, disclosed rates of ₹15–30K per post, existing history with mainstream men's grooming brands [25]. Contrast case: Karron Dhingra (The Formal Edit) — ~256K followers but ~₹27K+ per single post [25]; bigger isn't better when 5 micro-creators cost the same and out-engage him combined. The first 25 faces get built from this profile: menswear, grooming, streetwear and everyday-carry creators in the 5K–50K band, product-gifting first, paid only after a creator's audience proves it converts.",
       },
     ],
-    todo:
-      "Genuinely unresolved — I tried to pull real Reddit threads for this (r/IndianFashionAddicts, r/malefashionadvice) and the search kept resolving to e-commerce listings instead of forum results; I have not fabricated any threads or quotes to fill the gap. This is on you: 15–20 minutes searching those subreddits plus r/india directly in your own browser for \"wallet recommendation,\" \"sling bag brand,\" \"bag quality India\" gets real, screenshot-able evidence — and it's evidence no AI tool handed you, which is exactly what this brief is testing for.",
+    voiceOfCustomer: {
+      title: "What people are actually saying",
+      opening:
+        "I went to Reddit for this on purpose — the anonymity gets you opinions people won't put their name to elsewhere.",
+      screenshots: [
+        {
+          label: "r/PowerDiary — Supervek founder thread",
+          src: "/screenshots/supervek-founder-thread.png",
+          caption:
+            'Real demand outpacing small-brand supply: a customer wants one specific colorway, sold out "for a long time," won\'t accept a substitute.',
+        },
+        {
+          label: "r/zeninclothing — Gaara backpack thread",
+          src: "/screenshots/zeninclothing-gaara-backpack.png",
+          caption:
+            "Evidence of appetite for tribe/subculture-specific identity products — not a case for RUMOAR to pursue licensed anime IP directly (that's legally encumbered), but for designing around \"which tribe are you\" rather than universal appeal.",
+        },
+        {
+          label: "r/indianstartups — \"same brand\" thread",
+          src: "/screenshots/same-brand-mokobara-assembly-urban-jungle.png",
+          caption:
+            "The gap this appetite is running into: customers already see through templated brand sameness in this category (same thread as the Moat section above).",
+        },
+        {
+          label: "Reddit — avoid online sellers / D-Mart",
+          src: "/screenshots/avoid-online-sellers-dmart.png",
+          caption:
+            "The honest counter-case, and it belongs here, not hidden: real distrust of DTC-online in this category — defective-item hassle, scam risk on Instagram sellers. RUMOAR's execution has to answer this directly, not ignore it.",
+        },
+        {
+          label: "Reddit — Flipkart discount / Souled Store",
+          src: "/screenshots/flipkart-discount-souled-store.png",
+          caption:
+            "Price sensitivity and brand-hopping behavior — customers actively comparing and bargain-hunting, no default loyalty to any single accessories brand yet.",
+        },
+        {
+          label: "r/TwoXIndia — Mokobara \"Black Friday\" sale",
+          src: "/screenshots/mokobara-black-friday-scam.png",
+          caption:
+            'A customer questioning whether a "sale" price is real when the "non-sale" price sits right next to it — the exact fake-discounting trap RUMOAR is ruling out for the hyped drop.',
+        },
+        {
+          label: "r/TwoXIndia — \"moko itself is a scam\"",
+          src: "/screenshots/moko-itself-a-scam.png",
+          caption:
+            "The same thread escalating into direct distrust — claims the products are rebranded goods sold at a markup. This is the trust gap RUMOAR has to be built to not repeat.",
+        },
+      ],
+      closing:
+        "Read together: there's real appetite for identity-driven accessories, real frustration with how samey and how operationally unreliable the current players are, and real skepticism of online-only brands that RUMOAR will have to earn past, not talk past.",
+    },
   },
 
   footer: {

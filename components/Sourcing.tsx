@@ -1,7 +1,6 @@
 import type { RumoarContent } from "@/data/types";
 import { FootnoteText } from "./FootnoteText";
 import { Reveal } from "./Reveal";
-import { TodoBlock } from "./TodoBlock";
 
 export function Sourcing({ sourcing }: { sourcing: RumoarContent["sourcing"] }) {
   return (
@@ -55,7 +54,34 @@ export function Sourcing({ sourcing }: { sourcing: RumoarContent["sourcing"] }) 
           ))}
         </div>
 
-        <TodoBlock text={sourcing.todo} />
+        <Reveal>
+          <h3 className="sub-heading mono">{sourcing.realListings.heading}</h3>
+          <p className="lede">{sourcing.realListings.intro}</p>
+        </Reveal>
+
+        <div className="listings-grid">
+          {sourcing.realListings.columns.map((column, i) => (
+            <Reveal className="listings-column" key={column.category} delay={i * 100}>
+              <h4 className="listings-category mono">{column.category}</h4>
+              {column.listings.map((listing) => (
+                <div className="listing-item" key={listing.name}>
+                  <b>{listing.name}</b>
+                  {listing.highlight && <p className="listing-highlight mono">{listing.highlight}</p>}
+                  <p>
+                    <FootnoteText text={listing.body} />
+                  </p>
+                  {listing.lowConfidence && (
+                    <span className="confidence-tag mono">Lower confidence — {listing.lowConfidence}</span>
+                  )}
+                </div>
+              ))}
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal as="p" className="lede">
+          {sourcing.realListings.read}
+        </Reveal>
       </div>
     </section>
   );

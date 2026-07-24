@@ -29,8 +29,6 @@ export function Risks({ risks }: { risks: RumoarContent["risks"] }) {
             </Reveal>
           ))}
         </div>
-
-        <TodoBlock text={risks.todo} />
       </div>
     </section>
   );

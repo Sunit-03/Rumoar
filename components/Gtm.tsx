@@ -1,7 +1,7 @@
 import type { RumoarContent } from "@/data/types";
+import { EvidenceDeck } from "./EvidenceDeck";
 import { FootnoteText } from "./FootnoteText";
 import { Reveal } from "./Reveal";
-import { TodoBlock } from "./TodoBlock";
 
 export function Gtm({ gtm }: { gtm: RumoarContent["gtm"] }) {
   return (
@@ -23,7 +23,16 @@ export function Gtm({ gtm }: { gtm: RumoarContent["gtm"] }) {
           ))}
         </div>
 
-        <TodoBlock text={gtm.todo} />
+        <Reveal>
+          <h3 className="sub-heading mono">{gtm.voiceOfCustomer.title}</h3>
+          <p className="lede">{gtm.voiceOfCustomer.opening}</p>
+        </Reveal>
+
+        <EvidenceDeck shots={gtm.voiceOfCustomer.screenshots} />
+
+        <Reveal as="p" className="lede">
+          {gtm.voiceOfCustomer.closing}
+        </Reveal>
       </div>
     </section>
   );

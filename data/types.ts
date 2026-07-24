@@ -49,6 +49,18 @@ export interface HubCard {
   body: string; // may contain [n] footnote markers
 }
 
+export interface SourcingListing {
+  name: string;
+  body: string; // may contain [n] footnote markers
+  highlight?: string; // standout stat/price point, rendered distinctly
+  lowConfidence?: string; // caveat text; presence renders a "lower confidence" tag
+}
+
+export interface SourcingListingColumn {
+  category: string;
+  listings: SourcingListing[];
+}
+
 export interface ArgumentCard {
   title: string;
   body: string; // may contain [n] footnote markers
@@ -94,6 +106,12 @@ export interface GtmCard {
   body: string; // may contain [n] footnote markers
 }
 
+export interface EvidenceScreenshot {
+  label: string; // placeholder label shown in the image box until the real screenshot is dropped in
+  caption: string; // may contain [n] footnote markers
+  src?: string; // path under /public, e.g. "/screenshots/zouk-refund-complaint.png"
+}
+
 export interface GlobalRead {
   title: string;
   body: string;
@@ -116,6 +134,7 @@ export interface RumoarContent {
     eyebrow: string;
     headline: string;
     subhead: string;
+    positioning: string;
     verdictChipBold: string;
     verdictChipRest: string;
   };
@@ -159,7 +178,12 @@ export interface RumoarContent {
     argumentCards: ArgumentCard[];
     dutyCards: DutyCard[];
     hubs: HubCard[];
-    todo: string;
+    realListings: {
+      heading: string;
+      intro: string;
+      columns: SourcingListingColumn[];
+      read: string;
+    };
   };
   economics: {
     kicker: string;
@@ -172,6 +196,10 @@ export interface RumoarContent {
     kicker: string;
     title: string;
     opening: string;
+    whyNowHeading: string;
+    whyNowBody: string;
+    whyNowScreenshots: EvidenceScreenshot[];
+    whyNowClosing: string;
     flywheelHeading: string;
     flywheel: FlywheelStep[];
     flywheelLoop: string;
@@ -192,7 +220,12 @@ export interface RumoarContent {
     kicker: string;
     title: string;
     cards: GtmCard[];
-    todo: string;
+    voiceOfCustomer: {
+      title: string;
+      opening: string;
+      screenshots: EvidenceScreenshot[];
+      closing: string;
+    };
   };
   footer: {
     line: string;
